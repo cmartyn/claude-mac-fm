@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-mac-fm",
+  "description": "Claude Code skill for offloading light tasks to Apple's on-device fm CLI.",
+  "owner": { "name": "cmartyn", "email": "cmartyn@gmail.com" },
+  "plugins": [
+    {
+      "name": "local-model",
+      "description": "Offload light, low-stakes tasks to Apple's on-device Foundation Models CLI (fm) to save cloud tokens.",
+      "source": "./plugins/local-model",
+      "version": "0.1.0",
+      "homepage": "https://github.com/cmartyn/claude-mac-fm"
+    }
+  ]
+}
