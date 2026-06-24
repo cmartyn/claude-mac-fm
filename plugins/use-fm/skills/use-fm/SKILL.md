@@ -1,10 +1,10 @@
 ---
-name: local-model
+name: use-fm
 description: Use when a task is light and low-stakes enough to offload to the on-device model and save cloud tokens — quick common-knowledge facts, simple text transforms (summarize, rephrase, classify, tag, extract), a fast sanity-check, or a first draft of small, self-contained code you then verify yourself (test, review, or refine). Wraps Apple's on-device Foundation Models CLI (`fm`) on Apple Silicon. Keep debugging, multi-step reasoning, and math in your own hands, and verify anything load-bearing before relying on it.
 allowed-tools: [Bash, Read]
 ---
 
-# local-model — offload light work to the on-device `fm` model
+# use-fm — offload light work to the on-device `fm` model
 
 ## Overview
 `fm` is Apple's **Foundation Models CLI** (Apple Silicon). The default `system` model runs **on-device** — free, private, offline, and **zero cloud tokens**. Apple's stack spans tiers: a fast on-device model and **Private Cloud Compute (PCC)**, a more capable, privacy-preserving cloud tier the system can step up to when a task warrants it. You can't always tell which tier answered, so the rule of thumb is simple: it's great for offloading light work, and you verify anything that matters.

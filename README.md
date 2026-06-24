@@ -21,7 +21,7 @@ An **Apple Silicon Mac** with Apple's on-device Foundation Models available (the
 
 ```
 /plugin marketplace add cmartyn/claude-mac-fm
-/plugin install local-model@claude-mac-fm
+/plugin install use-fm@claude-mac-fm
 ```
 
 Then `/reload-plugins` (or restart Claude Code). That's it — Claude will start reaching for the local model on suitable tasks.
