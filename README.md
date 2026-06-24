@@ -1,8 +1,6 @@
 # claude-mac-fm
 
-A [Claude Code](https://claude.com/claude-code) skill that teaches Claude to offload **light, low-stakes work to an on-device model** — via Apple's [Foundation Models](https://developer.apple.com/documentation/foundationmodels) (`fm`) — so it spends cloud tokens only where they matter, with a fast, private, local second opinion always on hand.
-
-> Belt-and-suspenders for your token budget: Claude keeps using its cloud models for everything that counts, and quietly hands the trivial stuff to the model already running on your Mac.
+A [Claude Code](https://claude.com/claude-code) skill that teaches Claude to offload **light, low-stakes work to an on-device model** — via Apple's [Foundation Models](https://developer.apple.com/documentation/foundationmodels) (`fm`) in an effort to improve response quality and conserve cloud tokens.
 
 ## What the skill does
 
@@ -15,7 +13,7 @@ It's a set of instructions that shape *when* and *how* Claude leans on the local
 
 ## Requirements
 
-An **Apple Silicon Mac** with Apple's on-device Foundation Models available (the `fm` command). See Apple's [Foundation Models documentation](https://developer.apple.com/documentation/foundationmodels). The skill checks availability before using it, and quietly does the task itself if `fm` isn't present — so it's safe to install anywhere.
+An **Apple Silicon Mac** with Apple's on-device Foundation Models available (the `fm` command). See Apple's [Foundation Models documentation](https://developer.apple.com/documentation/foundationmodels). The skill checks availability before using it, and quietly does the task itself if `fm` isn't present — so it's safe to install anywhere. As of June 2026, the `fm` command is only available in the beta version of Mac OS 27.
 
 ## Install
 
@@ -36,4 +34,4 @@ MIT — see [LICENSE](LICENSE).
 
 ## Disclaimer
 
-Not affiliated with or endorsed by Apple or Anthropic. The on-device model is Apple's; this project just teaches Claude Code to use it well, and to verify anything that matters.
+Not affiliated with or endorsed by Apple or Anthropic. The on-device model is Apple's; this project just teaches Claude Code to use it well, and to verify anything that matters. This is still experimental.
