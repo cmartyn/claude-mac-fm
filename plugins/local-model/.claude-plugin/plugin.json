@@ -1,7 +1,7 @@
 {
   "name": "local-model",
   "description": "Offload light, low-stakes tasks to Apple's on-device Foundation Models CLI (fm) to save cloud tokens.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": { "name": "cmartyn", "email": "cmartyn@gmail.com" },
   "homepage": "https://github.com/cmartyn/claude-mac-fm",
   "repository": "https://github.com/cmartyn/claude-mac-fm",

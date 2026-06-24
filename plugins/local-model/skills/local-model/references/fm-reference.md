@@ -6,7 +6,7 @@
 | Model | Description | Notes |
 |---|---|---|
 | `system` | On-device Apple Foundation Model | **Default.** Free, private, offline, zero cloud tokens. |
-| `pcc` | Apple Foundation Model on Private Cloud Compute | Often unavailable in a given context; `fm available` reports status. |
+| `pcc` | More-capable model on Apple's Private Cloud Compute | Privacy-preserving cloud tier. The system may step up to it automatically when a task warrants, or request it explicitly with `--model pcc` when available. |
 
 ## Commands
 ```
@@ -85,15 +85,15 @@ Endpoints: `POST /v1/chat/completions` (streaming & non-streaming), `GET /v1/mod
 
 ## `fm available` / `fm quota-usage`
 ```bash
-fm available      # prints "System model available"; also prints a PCC line (an error if PCC is off)
+fm available      # prints "System model available"; also prints a PCC status line
 fm quota-usage    # quota applies to PCC only
 ```
-Gate automation on the string `System model available` — not the exit code, since the PCC line can read like an error even when the on-device model is ready.
+Gate automation on the string `System model available` — not the exit code, since the PCC line can read like an error when that tier isn't active in your context.
 
-## Measured capability (this machine: M3 Max, macOS 27, `system` model)
-Quick empirical calibration. Treat as guidance and re-check on your own hardware/OS.
+## Capability notes (default on-device `system` model)
+Quick local calibration on this machine (M3 Max, macOS 27). It reflects the **on-device** tier; the more-capable **PCC** tier does better when it's used, and you can't always tell which one answered — so treat this as guidance and verify anything load-bearing.
 
-| Task | Result |
+| Task | Notes |
 |---|---|
 | Common-knowledge facts (capitals, etc.) | ✅ reliable |
 | Summarize short text | ✅ good |
@@ -101,12 +101,12 @@ Quick empirical calibration. Treat as guidance and re-check on your own hardware
 | Tagging | ✅ good |
 | Rephrase / tone change | ✅ good |
 | Entity / email extraction | ✅ good |
-| Small, self-contained code (as a draft) | ✅ often correct — use as a **draft you verify** (test / review / refine); not for debugging or large/cross-file changes |
-| Multi-step reasoning | ❌ unreliable (missed the classic "bat & ball") |
-| Arithmetic | ❌ wrong (`4823 × 7919` → far off) |
-| Obscure / long-tail facts | ❌ confidently **fabricates** |
+| Small, self-contained code (as a draft) | ✅ often correct — use as a **draft you verify** (test / review / refine); leave debugging and large/cross-file changes to yourself |
+| Multi-step reasoning | ⚠️ verify — can slip on tricky chains of logic |
+| Arithmetic | ⚠️ verify — don't take a computed number on faith |
+| Obscure / long-tail facts | ⚠️ verify — like any model, can be confidently wrong on niche details |
 
 **Behavior notes:**
 - Without `-i` instructions the model tends to be chatty; pass instructions to control format.
 - It occasionally prepends stray meta-text — clean the output before using it.
-- Latency ≈ 2–3 s for short prompts (first call may include model warm-up).
+- Latency ≈ 2–3 s for short prompts on the on-device tier (first call may include model warm-up).
