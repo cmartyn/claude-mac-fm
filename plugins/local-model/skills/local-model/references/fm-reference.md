@@ -101,7 +101,7 @@ Quick empirical calibration. Treat as guidance and re-check on your own hardware
 | Tagging | ✅ good |
 | Rephrase / tone change | ✅ good |
 | Entity / email extraction | ✅ good |
-| Trivial standalone code snippet | ⚠️ often correct, but unverifiable — don't trust for project code |
+| Small, self-contained code (as a draft) | ✅ often correct — use as a **draft you verify** (test / review / refine); not for debugging or large/cross-file changes |
 | Multi-step reasoning | ❌ unreliable (missed the classic "bat & ball") |
 | Arithmetic | ❌ wrong (`4823 × 7919` → far off) |
 | Obscure / long-tail facts | ❌ confidently **fabricates** |

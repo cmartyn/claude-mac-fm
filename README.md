@@ -11,8 +11,9 @@ Once installed, Claude will *proactively* use the on-device model for things lik
 - **Quick common-knowledge facts & definitions**
 - **Simple text transforms** — summarize, rephrase, change tone, classify, tag, extract
 - **Cheap sanity-checks** of an answer it already has
+- **First drafts of small, self-contained code** — which Claude then tests, reviews, or refines before it lands
 
-…and it deliberately **won't** use it for project code, multi-step reasoning, math, obscure facts, long documents, or anything load-bearing — because the on-device model is small. These boundaries were set by **actually measuring** the model, not guessing (see the [capability table](plugins/local-model/skills/local-model/references/fm-reference.md#measured-capability-this-machine-m3-max-macos-27-system-model)).
+…and it deliberately **won't** use it for debugging, multi-step reasoning, math, obscure facts, or long documents — because the on-device model is small. For small, self-contained code it can write a *first draft*, which Claude then **verifies** (tests, reviews, or refines) before anything lands. These boundaries were set by **actually measuring** the model, not guessing (see the [capability table](plugins/local-model/skills/local-model/references/fm-reference.md#measured-capability-this-machine-m3-max-macos-27-system-model)).
 
 It treats local output with **low-stakes trust**: fine for trivial/cosmetic results, validated for anything that touches code, files, or decisions.
 
