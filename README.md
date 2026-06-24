@@ -59,6 +59,35 @@ fm token-count -q 'How many tokens is this?'
 
 See the [full reference](plugins/local-model/skills/local-model/references/fm-reference.md) for structured JSON output (`--schema`), vision (`--image`), multi-turn transcripts, and the OpenAI-compatible local server (`fm serve`).
 
+## Using it for code (draft → verify)
+
+`fm` can write a **first draft** of small, self-contained code — but Claude never ships it unverified. A real run of the loop:
+
+**1. Draft** (on-device, zero cloud tokens):
+
+```bash
+fm respond -i 'Output only Python code' \
+  'Write slugify(s): lowercase, collapse non-alphanumeric runs to one hyphen, trim hyphens'
+```
+
+**2. Verify by running it.** In testing, this step instantly caught that the draft came back wrapped in Markdown code fences — the kind of thing you catch by *executing*, not skimming. Cleaned up, the draft is sound:
+
+```python
+import re
+def slugify(s):
+    s = s.lower()
+    s = re.sub(r'[^\w]+', '-', s)
+    return s.strip('-')
+```
+
+```text
+'Hello, World!'  -> 'hello-world'
+'already-a-slug' -> 'already-a-slug'
+'Ünïcödé_x'      -> 'ünïcödé_x'   # \w keeps unicode + underscores; refine for ASCII-only
+```
+
+**3. Refine if needed,** then it lands. Good `fm` draft candidates: a single small function, boilerplate, or a config snippet. Claude writes the rest itself — debugging, large or cross-file refactors, and correctness minefields (email/URL/date regexes, parsing, security) don't go to `fm`.
+
 ## How it works
 
 The skill is just a `SKILL.md` (plus a reference doc) that teaches Claude *when* offloading to `fm` is worthwhile, *how* to call it correctly, and *how much to trust* the result. There's no daemon and no config — Claude shells out to `fm` on demand.
